@@ -9,13 +9,10 @@ The first dataset comes from [Refinitiv's Eikon API](https://github.com/Refiniti
 ## Logistic Regression
 
 First, using a logistic regression, this model typically achieves an accuracy of roughly .5 with a confusion matrix as follows:
-![Confusion matrix](img/1_logistic.png)
+![Confusion matrix](https://github.com/dkconnect/mergers/blob/main/images/main2.png)
 
 The ROC curve is the following:
-![ROC curve](img/1_logisticROC.png)
-
-Finally, we have the most important predictors:
-![Predictors](img/1_logisticfeatures.png)
+![ROC curve](https://github.com/dkconnect/mergers/blob/main/images/main3.png)
 
 Net cash flow from operating activities, with its negative coefficient, emerges as the ultimate diviner of M&A intentions. After all, it makes sense for cash-hungry companies to entertain the prospect of merging or being acquired.
 
@@ -23,11 +20,7 @@ Net cash flow from operating activities, with its negative coefficient, emerges 
 
 Shifting gears, I tried a gradient boosting model. This model achieves a higher accuracy near 55%. 
 
-![Confusion matrix](img/1_gb.png)
-
-![ROC curve](img/1_gbROC.png)
-
-![Predictors](img/1_gbfeatures.png)
+![Predictors](https://github.com/dkconnect/mergers/blob/main/images/main1.png)
 
 Interestingly, the gradient boosting model places a higher emphasis on net debt per share and market to book. In general, the two models (logistic and gradient boosting) seem to not place similar emphases on predictors.
 
@@ -39,17 +32,15 @@ This dataset has almost 32000 mergers/nonmergers, though only about 15 columns.
 
 Running a gradient boosting model on this data, I achieved an accuracy of .919! However, my joy was short-lived as I discovered that the false negative rate was .952.
 
-![confusion](img/2_bad.png)
+![confusion](https://github.com/dkconnect/mergers/blob/main/images/dataset2.png)
 
 After doing some research and inspecting my data set, I realized that the data was heavily skewed towards nonmergers. Thus I had to implement a function to preprocess the data so that mergers and nonmergers were balanced. After balancing, accuracy was still fairly good.
 
-![Confusion matrix](img/2_confusion.png)
+![Confusion matrix](https://github.com/dkconnect/mergers/blob/main/images/dataset3.png)
 
 Notably, this model has an 84% accuracy in finding mergers and 69% accuracy in finding nonmergers.
 
-![ROC curve](img/2_ROC.png)
-
-![Predictors](img/2_features.png)
+![Predictors](https://github.com/dkconnect/mergers/blob/main/images/dataset1.png)
 
 I was pretty happy with this accuracy, so I wanted to continue exploring how M&A could be predicted.
 
@@ -67,11 +58,3 @@ Similarly, because my financial data and news sources were not synced, I could n
 # Future Directions
 
 I'd like to add a time series components to this project, evaluating how the stock price of companies predicted to be involved in M&A changes throughout a merger. Given the influence that media has on prices, it would also be interesting to see how the timing of article publication affects these prices. Perhaps then M&A trends could be better understood and investments be better made.
-
-# Usage
-
-Install the necessary dependencies from [here](src/requirements.txt) and dig into the M&A world.
-
-# Applications
-
-Despite the current limitations, the theoretical concept of this project holds practical implications for investors/financial analysts. By providing insights into factors that influence M&A decisions, the models can serve as indicators for potential M&A deals. Hopefully, by continuing to refine these models and involving more data, M&A deals can be quickly foreseen.
